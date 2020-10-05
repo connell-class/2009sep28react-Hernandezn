@@ -1,42 +1,12 @@
+// ALL METHODS ARE AS PROVIDED BY THE INSTRUCTOR; NONE OF THEM RETURN THE CORRECT RESPONSE
 package com.revature.eval.java.core;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
-public class EvaluationService {
+public class EvaluationServiceUnedited {
 
-	public static void main(String[] args) {
-		EvaluationService tester = new EvaluationService();
-		
-		// ASCII finder
-		char c = '0';
-		System.out.println("\'" + c + "\' is ASCII number " + (int)c);
-		
-		
-		Map<String, Integer> actualWordCount = tester.wordCount("one,\ntwo,\nthree");
-		System.out.println(actualWordCount.toString());
-		
-//		Stack<String> pezDispenser = new Stack<String>();
-//		
-//		pezDispenser.push("Strawberry Pez");
-//		pezDispenser.push("A tiny chicken nugget");
-//		pezDispenser.push("Chalk Pez");
-//		pezDispenser.push("Grape Pez");
-//		pezDispenser.push("Original Pez");
-//		
-//		System.out.println(pezDispenser.pop());
-//		System.out.println(pezDispenser.peek());
-//		System.out.println(pezDispenser.pop());
-	}
-	
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
@@ -61,24 +31,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		StringBuilder result = new StringBuilder();
-		boolean willNextLetterBeAdded = true;
-		
-		for(int index = 0, len = phrase.length(); index < len; index++) {
-			if(willNextLetterBeAdded) {
-				char c = phrase.charAt(index);
-				
-				if(Character.isLetterOrDigit(c)) {
-					result.append(c);
-					willNextLetterBeAdded = false;
-				}
-			}
-			else {
-				// If it's not a letter or digit, then the next character will be in the acronym
-				willNextLetterBeAdded = !Character.isLetterOrDigit(phrase.charAt(index));
-			}
-		}
-		return result.toString().toUpperCase();
+		// TODO Write an implementation for this method declaration
+		return null;
 	}
 
 	/**
@@ -131,15 +85,18 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			return(sideOne == sideTwo && sideTwo == sideThree);
+			// TODO Write an implementation for this method declaration
+			return false;
 		}
 
 		public boolean isIsosceles() {
-			return(sideOne == sideTwo || sideOne == sideThree || sideTwo == sideThree);
+			// TODO Write an implementation for this method declaration
+			return false;
 		}
 
 		public boolean isScalene() {
-			return !this.isIsosceles();
+			// TODO Write an implementation for this method declaration
+			return false;
 		}
 
 	}
@@ -160,54 +117,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		int result = 0;
-		
-		for(int index = 0, len = string.length(); index < len; index++) {
-			char c = Character.toUpperCase(string.charAt(index));
-			
-			switch(c) {
-				case 'Z':
-				case 'Q':
-					result += 10;
-					break;
-				case 'X':
-				case 'J':
-					result += 8;
-					break;
-				case 'K':
-					result += 5;
-					break;
-				case 'Y':
-				case 'W':
-				case 'V':
-				case 'H':
-				case 'F':
-					result += 4;
-					break;
-				case 'P':
-				case 'M':
-				case 'C':
-				case 'B':
-					result += 3;
-					break;
-				case 'G':
-				case 'D':
-					result += 2;
-					break;
-				case 'T':
-				case 'S':
-				case 'R':
-				case 'N':
-				case 'L':
-				case 'U':
-				case 'O':
-				case 'I':
-				case 'E':
-				case 'A':
-					result += 1;
-			}
-		}
-		return result;
+		// TODO Write an implementation for this method declaration
+		return 0;
 	}
 
 	/**
@@ -242,26 +153,8 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		StringBuilder result = new StringBuilder();
-		
-		// Strips all non-numeric characters from the input string
-		for(int index = 0, len = string.length(); index < len; index++) {
-			char c = string.charAt(index);
-			
-			if(Character.isDigit(c))
-				result.append(c);
-		}
-		
-		// Removes any leading 1s
-		if(result.charAt(0) == '1')
-			result.deleteCharAt(0);
-		
-		
-		// Checks string length, then checks whether the 1st or 4th digits are less than 2
-		if(result.length() != 10 || Character.digit(result.charAt(0), 10) < 2 || Character.digit(result.charAt(3), 10) < 2)
-			throw new IllegalArgumentException("This is not a valid US phone number!");
-		
-		return result.toString();
+		// TODO Write an implementation for this method declaration
+		return null;
 	}
 
 	/**
@@ -274,34 +167,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		Map<String, Integer> result = new HashMap<String, Integer>();
-		StringBuilder word = new StringBuilder();
-		string = string.toLowerCase();
-		
-		boolean isWordBuilding = false; // informs whether or not the word is still being built
-		for(int index = 0, len = string.length(); index < len; index++) {
-			char c = string.charAt(index);
-			boolean isChar = Character.isLetter(c);
-			
-			if(isChar) { // words are only being built while the character is a letter
-				if(!isWordBuilding){
-					isWordBuilding = true;
-					word = new StringBuilder();	// START A NEW WORD: if the word is not being built and we encounter a letter
-				}
-				word.append(c); 				// ALWAYS APPEND NEW LETTERS TO THE ACTIVE WORD
-			}
-			
-			if(!isChar && isWordBuilding || len == index + 1) {
-				isWordBuilding = false;			// END A WORD: if the word was being built and we encounter a non-letter character
-				String key = word.toString();	// or if the input String is ending
-				if(!result.containsKey(key))
-					result.put(key, 1); // adds a new word if it hasn't been encountered before
-				else
-					result.put(key, result.get(key)+1); // adds +1 to a word's count if it has been encountered before
-			}
-		}
-		
-		return result;
+		// TODO Write an implementation for this method declaration
+		return null;
 	}
 
 	/**
@@ -343,20 +210,8 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			Integer intT = Integer.parseInt(t.toString());
-			
-			int middleIndex = sortedList.size()/2;
-			int comparison = intT.compareTo(Integer.parseInt(sortedList.get(middleIndex).toString()));
-			
-			if(comparison > 0) {
-				setSortedList(sortedList.subList(middleIndex + 1, sortedList.size()));
-				return middleIndex + 1 + indexOf(t);
-			} else if(comparison < 0) {
-				setSortedList(sortedList.subList(0, middleIndex));
-				return indexOf(t);
-			}
-			
-			return middleIndex;
+			// TODO Write an implementation for this method declaration
+			return 0;
 		}
 
 		public BinarySearch(List<T> sortedList) {
@@ -392,41 +247,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		StringBuilder result = new StringBuilder();
-		
-		String[]words = string.split(" ");
-		
-		for(int index = 0; index < words.length; index++) {
-			int leadingConsonants = 0;
-			
-			leadingConsonantCounter:
-			while(true){
-				switch(words[index].charAt(leadingConsonants)) {
-					case 'q':
-						leadingConsonants++; // special case for the letter q
-						break;
-					case 'a':
-					case 'e':
-					case 'i':
-					case 'o':
-					case 'u':
-						break leadingConsonantCounter; // stops incrementing once a vowel is encountered
-					default:
-				}
-				leadingConsonants++; // increments every time a vowel is not encountered
-			}
-			
-			result.append(
-				words[index].substring(leadingConsonants, words[index].length()) +	// The word with leading consonants removed
-				words[index].substring(0, leadingConsonants) +						// The leading consonants only
-				"ay"																// lmao
-			);
-			
-			if(index + 1 < words.length)
-				result.append(" "); // adds a space if there's another word coming up
-		}
-		
-		return result.toString();
+		// TODO Write an implementation for this method declaration
+		return null;
 	}
 
 	/**
@@ -445,14 +267,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		char[]inputDigits = Integer.toString(input).toCharArray();
-		int totalDigits = inputDigits.length;
-		
-		int sum = 0;
-		for(char digit : inputDigits)
-			sum += Math.round((float)Math.pow(	Character.digit(digit, 10),		totalDigits));
-		
-		return sum == input;
+		// TODO Write an implementation for this method declaration
+		return false;
 	}
 
 	/**
@@ -466,34 +282,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		List<Long> result = new ArrayList<Long>();
-		
-		if(l <= 1)
-			return result;
-		
-		primeFinder:
-		while(true) {
-			if (l == 2) { // base case 2
-				result.add(l);
-				break primeFinder;
-			}
-			
-			long inputRoot = Math.round(Math.sqrt(l));
-			
-			for(long i = 2; i <= inputRoot; i++) {
-				if(l % i == 0) { // if modulo returns no remainder, the number is a factor
-					result.add(i);
-					l /= i;
-					continue primeFinder;
-				}
-				else if(i == inputRoot) { // if no numbers up to the root of a number are factors, the number is itself prime
-					result.add(l);
-					break primeFinder;
-				}
-			}
-		}
-		
-		return result;
+		// TODO Write an implementation for this method declaration
+		return null;
 	}
 
 	/**
@@ -531,19 +321,8 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			StringBuilder result = new StringBuilder(string.length());
-			
-			char[]chars = string.toCharArray();
-			for(char c: chars) {
-				if(c >= 'a' && c <= 'z')
-					c = (char)('a' + (c - 'a' + key) % 26); // rotate lowercase
-				else if(c >= 'A' && c <= 'Z')
-					c = (char)('A' + (c - 'A' + key) % 26); // rotate uppercase
-				
-				result.append(c);
-			}
-			
-			return result.toString();
+			// TODO Write an implementation for this method declaration
+			return null;
 		}
 
 	}
@@ -561,25 +340,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-		if(i < 1)
-			throw new IllegalArgumentException("Invalid value N for calculateNthPrime in EvaluationService!");
-		else if (i <= 2)
-			return (i + 1); // base case 2 to filter out even numbers, base case 3 to allow checks to start on an odd number
-		
-		int result = 5;
-		for(int xthPrime = 3; xthPrime <= i; xthPrime++) {
-			long resultRoot = Math.round(Math.sqrt(result));
-			
-			for(int factorToCheck = 3; factorToCheck <= resultRoot; factorToCheck += 2) {
-				if(result % factorToCheck == 0) {
-					xthPrime--;
-					break;
-				}
-			}
-			result += 2;
-		}
-		
-		return result - 2;
+		// TODO Write an implementation for this method declaration
+		return 0;
 	}
 
 	/**
@@ -615,36 +377,8 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			StringBuilder cleanString = new StringBuilder(string.length());
-			StringBuilder result;
-			
-			
-			
-			// Produces cleanString, which has only letters & digits with no punctuation or white space
-			char[]inputChars = string.toLowerCase().toCharArray();
-			for(char c: inputChars)
-				if(Character.isLetterOrDigit(c))
-					cleanString.append(c);
-			
-			
-			
-			// Builds the cipher text out of cleanString
-			result = new StringBuilder(cleanString.length() + (cleanString.length() - 1) % 5);
-			for(int index = 0, length = cleanString.length(); index < length; index++) {
-				if(index % 5 == 0 && index != 0)
-					result.append(" ");
-				
-				char c = cleanString.charAt(index);
-				
-				if(c >= 'a' && c <= 'z')
-					c = (char)('a' + 'z' - c);
-				
-				result.append(c);
-			}
-			
-			
-			
-			return result.toString();
+			// TODO Write an implementation for this method declaration
+			return null;
 		}
 
 		/**
@@ -654,25 +388,8 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			StringBuilder result = new StringBuilder(string.length() - (string.length() - 1) % 5);
-			
-			// Performs the decode
-			for(int index = 0, length = string.length(); index < length; index++) {
-				// An encoded string will have a space for every 6 characters, starting at index 5
-				if((index + 1) % 6 == 0)
-					continue;
-				
-				// Flips the indexed character's place in the alphabet
-				char c = string.charAt(index);
-				if(c >= 'a' && c <= 'z')
-					c = (char)('a' + 'z' - c);
-				
-				result.append(c);
-			}
-			
-			
-			
-			return result.toString();
+			// TODO Write an implementation for this method declaration
+			return null;
 		}
 	}
 
@@ -699,33 +416,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		StringBuilder checkString = new StringBuilder(10);
-		
-		// Filters any non-ISBN characters; 2-718-29402-X becomes 271829402X
-		for(int index = 0, strLen = 0; index < string.length(); index++) {
-			strLen = checkString.length();
-			if(strLen > 10)
-				return false;
-			
-			char c = string.charAt(index);
-			if(c <= '9' && c >= '0' || strLen == 9 && c == 'X')
-				checkString.append(c);
-		}
-		
-		// An ISBN-10 is 10 characters after all non-ISBN characters are filtered
-		if(checkString.length() != 10)
-			return false;
-		
-		// Adds all digits (with their respective multiplicands) to the checkSum
-		int checkSum = 0;
-		for(int index = 0; index < 10; index++) {
-			char c = checkString.charAt(index);
-			int digit = Character.isDigit(c) ? Character.digit(c, 10) : 10;
-			
-			checkSum += digit * (10 - index);
-		}
-		
-		return checkSum % 11 == 0;
+		// TODO Write an implementation for this method declaration
+		return false;
 	}
 
 	/**
@@ -742,25 +434,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		boolean[]letterAtIndex = new boolean[26]; // letterAtIndex[0] is whether or not 'a' is present, letterAtIndex[1] for 'b', etc.
-		Arrays.fill(letterAtIndex, false);
-		
-		
-		// Populates letterAtIndex boolean array; just sets the letter's index to true if that letter is found
-		string = string.toLowerCase();
-		char[]chars = string.toCharArray();
-		for(char c: chars)
-			if(c >= 'a' && c <= 'z')
-				letterAtIndex[c - 'a'] = true;
-		
-		
-		
-		// If any indices are false, it's not a pangram
-		for(boolean b: letterAtIndex)
-			if(!b)
-				return false;
-		
-		return true;
+		// TODO Write an implementation for this method declaration
+		return false;
 	}
 
 	/**
@@ -772,22 +447,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		LocalDateTime result = null;
-		
-		if(given instanceof LocalDateTime) {
-			result = LocalDateTime.from(given);
-		}
-		else if (given instanceof LocalDate) {
-			LocalDate date = (LocalDate)given;
-			
-			result = LocalDateTime.of(
-					date.getYear(), date.getMonth(), date.getDayOfMonth(),
-					0, 0, 0);
-		}
-		else
-			throw new IllegalArgumentException("getGigaSecondDate only takes LocalDate and LocalDateTime objects!");
-		
-		return result.plusSeconds(1_000_000_000L);
+		// TODO Write an implementation for this method declaration
+		return null;
 	}
 
 	/**
@@ -804,24 +465,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		Set<Integer> multiples = new TreeSet<>();
-		
-		
-		// Checks all numbers to see if they're multiples of the given factors
-		for(int numToCheck = 1; numToCheck < i; numToCheck++)
-			for(int factor: set)
-				if(numToCheck % factor == 0) {
-					multiples.add(numToCheck);
-					break;
-				}
-		
-		
-		// Sums all multiples
-		int sum = 0;
-		for(int addend: multiples)
-			sum += addend;
-		
-		return sum;
+		// TODO Write an implementation for this method declaration
+		return 0;
 	}
 
 	/**
@@ -861,40 +506,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		if(string.length() <= 1) {
-			return false;
-		}
-		
-		
-		// Filters out any white space and invalidates any non-numeric non-whitespace character inputs
-		StringBuilder digits = new StringBuilder();
-		char[]chars = string.toCharArray();
-		for(char c: chars) {
-			if(Character.isDigit(c))
-				digits.append(c);
-			else if(!Character.isWhitespace(c))
-				return false;
-		}
-		
-		
-		// Doubles every other digit, starting from the right
-		for(int index = digits.length() - 2; index >= 0; index -= 2) {
-			int digit = 2 * Character.digit(digits.charAt(index), 10);
-			
-			if(digit > 9)
-				digit -= 9;
-			
-			digits.setCharAt(index, Character.forDigit(digit, 10));
-		}
-		
-		
-		// Sums the digits
-		int sum = 0;
-		chars = digits.toString().toCharArray();
-		for(char c: chars)
-			sum += Character.digit(c, 10);
-		
-		return sum % 10 == 0;
+		// TODO Write an implementation for this method declaration
+		return false;
 	}
 
 	/**
@@ -925,60 +538,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		int currentIndex = string.length() - 2;
-		int firstOperand, operator, secondOperand, startIndex;
-		boolean isNegative;
-		
-		
-		// Finds the value of the second operand
-		secondOperand = 0;
-		startIndex = currentIndex;
-		for(char c = string.charAt(currentIndex); Character.isDigit(c); c = string.charAt(--currentIndex))
-			secondOperand += Character.digit(c, 10) * (int)Math.pow(10, startIndex - currentIndex);
-		
-		isNegative = string.charAt(currentIndex) == '-';
-		if(isNegative) {
-			currentIndex--;
-			secondOperand = -secondOperand;
-		}
-		
-		
-		
-		// Finds the operator
-		startIndex = currentIndex;
-		for(char c = string.charAt(currentIndex); !Character.isDigit(c); c = string.charAt(--currentIndex));
-		
-		// " plus " means 6,
-		// " minus " means 7,
-		// " multiplied by " means 15, and
-		// " divided by " means 12
-		operator = startIndex - currentIndex;
-		
-		
-		
-		// Finds the first operand
-		firstOperand = 0;
-		startIndex = currentIndex;
-		for(char c = string.charAt(currentIndex); Character.isDigit(c); c = string.charAt(--currentIndex))
-			firstOperand += Character.digit(c, 10) * (int)Math.pow(10, startIndex - currentIndex);
-		
-		if(string.charAt(currentIndex) == '-')
-			firstOperand = -firstOperand;
-		
-		
-		
-		// Performs the operation
-		switch(operator) {
-			case 6:
-				return firstOperand + secondOperand;
-			case 7:
-				return firstOperand - secondOperand;
-			case 15:
-				return firstOperand * secondOperand;
-			case 12:
-				return firstOperand / secondOperand;
-		}
-		
+		// TODO Write an implementation for this method declaration
 		return 0;
 	}
 
