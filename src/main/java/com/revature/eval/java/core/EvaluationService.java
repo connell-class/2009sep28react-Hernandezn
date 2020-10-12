@@ -398,12 +398,15 @@ public class EvaluationService {
 		
 		for(int index = 0; index < words.length; index++) {
 			int leadingConsonants = 0;
+			int wordLength = words[index].length();
 			
 			leadingConsonantCounter:
-			while(true){
+			while(leadingConsonants < wordLength){
 				switch(words[index].charAt(leadingConsonants)) {
 					case 'q':
-						leadingConsonants++; // special case for the letter q
+						if(leadingConsonants + 1 < wordLength
+								&& words[index].charAt(leadingConsonants + 1) == 'u')
+							leadingConsonants++; // special case for the letter q
 						break;
 					case 'a':
 					case 'e':
